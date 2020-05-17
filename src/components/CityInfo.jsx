@@ -8,6 +8,8 @@ export default props => {
     reputation,
     population,
     money,
+    turn,
+    maxTurn,
     turnHandler
   } = props
 
@@ -30,6 +32,10 @@ export default props => {
         <div class='bit-card'>
           <h3>Population</h3>
           <p>{population}</p>
+        </div>
+        <div class='bit-card'>
+          <h3>Turn</h3>
+          <p>{turn} / {maxTurn}</p>
         </div>
         <div>
           <EndTurnButton turnHandler={turnHandler} />

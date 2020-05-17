@@ -10,6 +10,10 @@ export default props => {
     realEstate,
     money,
     setMoney,
+    addIncome,
+    addPopulation,
+    addReputation,
+    subReputation,
     setRealEstate,
     setSelected,
     selected
@@ -28,6 +32,21 @@ export default props => {
           hex.className = selected.className
           hex.type = selected.type
           hex.price = selected.price
+          hex.modifiers = selected.modifiers
+
+          hex.modifiers.forEach(m => {
+            if(m.type === 'self') {
+              if (!hex.played) {
+                m.action()
+              }
+              hex.played = true
+            }
+
+            if (m.type === 'adjacent') {
+              const neighbours = HexUtils.neighbours(hex)
+              console.log(neighbours)
+            }
+          })
           setMoney(money + (hex.price * -1))
         }
       }
@@ -42,13 +61,44 @@ export default props => {
 
   const realEstateHexTypes = {
     residential: [
-      { type: 'housing', price: 10 }
+      { type: 'housing',
+        price: 10,
+        modifiers: [
+          {
+            type: 'self',
+            action: () => addPopulation(10)
+          },
+          {
+            type: 'adjacent',
+            action: () => console.log('adjacent modifier')
+          }
+        ]
+      }
     ],
     commercial: [
-      { type: 'offices', price: 15 }
+      { type: 'offices',
+        price: 15,
+        modifiers: [
+          {
+            type: 'self',
+            action: () => addIncome(1)
+          }
+        ]
+      }
     ],
     industrial: [
-      { type: 'factory', price: 5 }
+      { type: 'factory',
+        price: 5,
+        modifiers: [
+          {
+            type: 'self',
+            action: () => {
+              addIncome(1)
+              subReputation(1)
+            }
+          }
+        ]
+      }
     ]
   }
 
@@ -67,6 +117,8 @@ export default props => {
 
             const item = realEstateHexTypes[type][Math.floor(Math.random() * realEstateHexTypes[type].length)]
             hex.price = item.price
+
+            hex.modifiers = item.modifiers
 
             const realEstateOnClick = () => {
               setSelected(hex)

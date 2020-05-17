@@ -7,7 +7,12 @@ import './index.css'
 
 const { GridGenerator } = hexgrid
 
+const MAX_TURN = 50
+
 export default () => {
+  const [turn, setTurn] = useState(0)
+  const [gameOver, setGameOver] = useState(false)
+
   const [income, setIncome] = useState(0)
   const [reputation, setReputation] = useState(1)
   const [population, setPopulation] = useState(2)
@@ -29,6 +34,13 @@ export default () => {
     } else {
       setPopulation(1)
     }
+
+    const newTurn = turn + 1
+    if (newTurn === MAX_TURN) {
+      setGameOver(true)
+    }
+
+    setTurn(turn + 1)
   }
 
   const addIncome = () => {
@@ -51,36 +63,56 @@ export default () => {
     margin: '10px'
   }
 
+  const addPopulation = n => {
+    setPopulation(population + n)
+  }
+
   return (
     <main>
-      <section style={styles}>
-        <CityInfo
-          name='Birdland'
-          income={income}
-          reputation={reputation}
-          population={population}
-          money={money}
-          turnHandler={turnHandler}
-        />
+      {!gameOver &&
 
-        <Debug
-          addIncome={addIncome}
-          subIncome={subIncome}
-          addReputation={addReputation}
-          subReputation={subReputation}
-        />
-      </section>
+        <>
+          <section style={styles}>
+            <CityInfo
+              name='Birdland'
+              income={income}
+              reputation={reputation}
+              population={population}
+              money={money}
+              turn={turn}
+              maxTurn={MAX_TURN}
+              turnHandler={turnHandler}
+            />
 
-      <Grid
-        hexagons={hexagons}
-        setHexagons={setHexagons}
-        realEstate={realEstate}
-        setRealEstate={setRealEstate}
-        selected={selected}
-        setSelected={setSelected}
-        money={money}
-        setMoney={setMoney}
-        size={10}
-      />
+          <Debug
+            addIncome={addIncome}
+            subIncome={subIncome}
+            addReputation={addReputation}
+            subReputation={subReputation}
+          />
+        </section>
+          <Grid
+            hexagons={hexagons}
+            setHexagons={setHexagons}
+            realEstate={realEstate}
+            setRealEstate={setRealEstate}
+            selected={selected}
+            setSelected={setSelected}
+            addIncome={addIncome}
+            addReputation={addReputation}
+            subReputation={subReputation}
+            addPopulation={addPopulation}
+            money={money}
+            setMoney={setMoney}
+            size={10}
+          />
+
+        </>
+      }
+      {gameOver &&
+          <section class="bit-card">
+            <h1>Game Over</h1>
+          </section>
+      }
     </main>)
 }
