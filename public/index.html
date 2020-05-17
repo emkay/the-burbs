@@ -2,14 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Web site created using create-snowpack-app" />
-    <title>Snowpack App</title>
+    <style>
+      .bit-root {
+        --bit-color0: #222323;
+        --bit-color1: #f0f6f0;
+      }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/1bit-ui/dist/1bit-ui.css" />
+    <title>The 'Burbs</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" class="bit-root"></div>
     <script type="module" src="/_dist_/index.js"></script>
     <!--
       This HTML file is a template.

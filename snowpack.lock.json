@@ -1,5 +1,6 @@
 {
   "imports": {
-    "csz": "https://cdn.pika.dev/pin/csz@v1.2.0-kFAWghpicSRGKY3yxXZv/csz.js"
+    "csz": "https://cdn.pika.dev/pin/csz@v1.2.0-kFAWghpicSRGKY3yxXZv/csz.js",
+    "react-hexgrid": "https://cdn.pika.dev/pin/react-hexgrid@v1.0.3-90U2lMyUp7O5RUGhnAcp/react-hexgrid.js"
   }
 }
