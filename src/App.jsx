@@ -84,13 +84,13 @@ export default () => {
               turnHandler={turnHandler}
             />
 
-          <Debug
-            addIncome={addIncome}
-            subIncome={subIncome}
-            addReputation={addReputation}
-            subReputation={subReputation}
-          />
-        </section>
+            <Debug
+              addIncome={addIncome}
+              subIncome={subIncome}
+              addReputation={addReputation}
+              subReputation={subReputation}
+            />
+          </section>
           <Grid
             hexagons={hexagons}
             setHexagons={setHexagons}
@@ -107,12 +107,10 @@ export default () => {
             size={10}
           />
 
-        </>
-      }
+        </>}
       {gameOver &&
-          <section class="bit-card">
-            <h1>Game Over</h1>
-          </section>
-      }
+        <section class='bit-card'>
+          <h1>Game Over</h1>
+        </section>}
     </main>)
 }

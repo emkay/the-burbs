@@ -35,7 +35,7 @@ export default props => {
           hex.modifiers = selected.modifiers
 
           hex.modifiers.forEach(m => {
-            if(m.type === 'self') {
+            if (m.type === 'self') {
               if (!hex.played) {
                 m.action()
               }
@@ -61,7 +61,8 @@ export default props => {
 
   const realEstateHexTypes = {
     residential: [
-      { type: 'housing',
+      {
+        type: 'housing',
         price: 10,
         modifiers: [
           {
@@ -76,7 +77,8 @@ export default props => {
       }
     ],
     commercial: [
-      { type: 'offices',
+      {
+        type: 'offices',
         price: 15,
         modifiers: [
           {
@@ -87,7 +89,8 @@ export default props => {
       }
     ],
     industrial: [
-      { type: 'factory',
+      {
+        type: 'factory',
         price: 5,
         modifiers: [
           {
