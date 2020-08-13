@@ -44,7 +44,7 @@ export default props => {
 
             if (m.type === 'adjacent') {
               const neighbours = HexUtils.neighbours(hex)
-              console.log(neighbours)
+              m.action(neighbours)
             }
           })
           setMoney(money + (hex.price * -1))
@@ -71,7 +71,25 @@ export default props => {
           },
           {
             type: 'adjacent',
-            action: () => console.log('adjacent modifier')
+            action: (neighbours, modifier) => {
+              console.log('adjacent modifier')
+              console.log(neighbours)
+              neighbours.forEach(n => {
+                console.log(n)
+                const matches = gridHexagons
+                  .filter(hex => {
+                    if (hex.played) {
+                      console.log(hex)
+                      console.log(n)
+                      console.log('this neighbor was played')
+                    }
+                    //console.log(hex.played)
+                    //console.log(HexUtils.equals(hex, n))
+                    return hex.played && HexUtils.equals(hex, n)
+                  })
+                console.log('there are ', matches.length, ' matches')
+              })
+            }
           }
         ]
       }
